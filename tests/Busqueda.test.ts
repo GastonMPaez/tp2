@@ -11,13 +11,12 @@ import ListaTarea from '../src/Listas/ListaTarea';
 describe('BuscadorDeTarea Strategy Pattern', () => {
 
     function cargarTareas(): void {
-        mockTarea1.setTitulo("Titulo1");
+        mockTarea1.setTitulo("Titulo11");
         mockTarea1.setDescripcion("Descripcion Prueba");
-        mockTarea1.setFechaVec(20241015);
+        mockTarea1.setFechaVec(11111111);
         mockTarea1.setPrioridad(Prioridad.ALTA);
-        mockTarea1.setCategoria("Categoria Prueba");
-        mockTarea1.setEtiqueta("Etiqueta Prueba");
-        mockTarea1.setAvance(50);
+        mockTarea1.setCategoria("Categoria 111");
+        mockTarea1.setEtiqueta("Etiqueta 111");
 
         mockTarea2.setTitulo("Titulo2 Prueba");
         mockTarea2.setDescripcion("Descripcion Prueba");
@@ -25,7 +24,6 @@ describe('BuscadorDeTarea Strategy Pattern', () => {
         mockTarea2.setPrioridad(Prioridad.MEDIA);
         mockTarea2.setCategoria("Categoria Prueba");
         mockTarea2.setEtiqueta("Etiqueta Prueba");
-        mockTarea2.setAvance(50);
 
         mockTarea3.setTitulo("Comprar Pan");
         mockTarea3.setDescripcion("Descripcion Prueba");
@@ -33,7 +31,6 @@ describe('BuscadorDeTarea Strategy Pattern', () => {
         mockTarea3.setPrioridad(Prioridad.BAJA);
         mockTarea3.setCategoria("Categoria Prueba");
         mockTarea3.setEtiqueta("Etiqueta Prueba");
-        mockTarea3.setAvance(50);
     }
 
     function setAction(valor: string) {
@@ -51,11 +48,8 @@ describe('BuscadorDeTarea Strategy Pattern', () => {
             return;
         }
     }
-    const crearTareaConTitulo = (titulo: string) => {
-        return new Tarea(titulo, "Descripción de prueba", 20241231, Prioridad.ALTA, "Categoría de prueba", "Etiqueta de prueba");
-    };
 
-    const contexto = new BuscadorDeTarea(new BusquedaPorTitulo());
+    let contexto: BuscadorDeTarea;
     let action: string;
 
     let mockLista = mock<ListaTarea>();
@@ -63,21 +57,29 @@ describe('BuscadorDeTarea Strategy Pattern', () => {
     let mockTarea2 = mock<Tarea>();
     let mockTarea3 = mock<Tarea>();
 
+    let tarea = new Tarea("Titulo1","Descripcion Prueba",20241015,Prioridad.BAJA,"Categoria Prueba","Etiqueta Prueba");
+    let lista = new ListaTarea();
+
     beforeEach(() => {
-        crearTareaConTitulo("Titulo1");
+        contexto = new BuscadorDeTarea(new BusquedaPorTitulo());
     });
 
     test('Debe buscar por título correctamente', () => {
-        const tarea = crearTareaConTitulo("Titulo1");
+
         cargarTareas();
+        lista.push(mockTarea1);
+        lista.push(mockTarea2);
+        lista.push(tarea);
+        lista.push(mockTarea3);
+
         mockLista.push(mockTarea1);
         mockLista.push(mockTarea2);
-        mockLista.push(mockTarea3);
         mockLista.push(tarea);
+        mockLista.push(mockTarea3);
 
         setAction("Titulo");
         decidirTipo(action);
-        const result = contexto.buscar(mockLista, "Titulo1");
+        const result = contexto.buscar(lista, "Titulo11");
         
         console.log(result);
     });
