@@ -4,20 +4,20 @@ export default class Tarea{
 
     private titulo:string;
     private descripcion:string;
-    private fechaVec:Date;
+    private fechaVec:number;
     private prioridad:Prioridad;
     private categoria:string;
     private etiqueta:string;
     private avance:number;
     
-    constructor(titulo:string, desc:string, fechaVec:Date, prioridad:Prioridad, cat:string, etiqueta:string, avance:number){
+    constructor(titulo:string, desc:string, fechaVec:number, prioridad:Prioridad, cat:string, etiqueta:string){
         this.titulo=titulo;
         this.descripcion=desc;
         this.fechaVec=fechaVec;
         this.prioridad = prioridad;
         this.categoria = cat;
         this.etiqueta = etiqueta;
-        this.avance = avance;
+        this.avance = 0;
     }
 
     public getTitulo(): string{
@@ -35,12 +35,12 @@ export default class Tarea{
     public setDescripcion(valor: string){
         this.descripcion = valor;
     }
-    
-    public getFechaVec():Date {
+
+    public getFechaVec():number {
         return this.fechaVec;
     }
 
-    public setFechaVec(valor: Date){
+    public setFechaVec(valor: number){
         this.fechaVec = valor;
     }
 

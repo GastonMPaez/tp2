@@ -5,7 +5,7 @@ import Tarea from "../Tarea";
 
 export default class EditarTarea {
 
-    public static editarTitulo(lista: ListaTarea, tarea: Tarea, nuevoTitulo: string):void{
+    public editarTitulo(lista: ListaTarea, tarea: Tarea, nuevoTitulo: string):void{
         let nodoAux: NodoTarea;
         nodoAux = lista.search(tarea);
 
@@ -14,7 +14,7 @@ export default class EditarTarea {
         }
     }
 
-    public static editarDescripcion(lista: ListaTarea, tarea: Tarea, nuevaDescripcion: string): void{
+    public editarDescripcion(lista: ListaTarea, tarea: Tarea, nuevaDescripcion: string):void{
         let nodoAux: NodoTarea;
         nodoAux = lista.search(tarea);
 
@@ -23,7 +23,7 @@ export default class EditarTarea {
         }
     }
 
-    public static editarFechaVec(lista: ListaTarea, tarea: Tarea, nuevoVec: Date):void{
+    public editarFechaVec(lista: ListaTarea, tarea: Tarea, nuevoVec: number):void{
         let nodoAux: NodoTarea;
         nodoAux = lista.search(tarea);
 
@@ -32,7 +32,7 @@ export default class EditarTarea {
         }
     }
 
-    public static editarPrioridad(lista: ListaTarea, tarea: Tarea, nuevaPrioridad: Prioridad):void{
+    public editarPrioridad(lista: ListaTarea, tarea: Tarea, nuevaPrioridad: Prioridad):void{
         let nodoAux: NodoTarea;
         nodoAux = lista.search(tarea);
 
@@ -41,7 +41,7 @@ export default class EditarTarea {
         }
     }
 
-    public static editarCategoria(lista: ListaTarea, tarea: Tarea, nuevaCategoria: string):void{
+    public editarCategoria(lista: ListaTarea, tarea: Tarea, nuevaCategoria: string):void{
         let nodoAux: NodoTarea;
         nodoAux = lista.search(tarea);
 
@@ -50,12 +50,21 @@ export default class EditarTarea {
         }
     }
 
-    public static editarEtiqueta(lista: ListaTarea, tarea: Tarea, nuevaEtiqueta:string):void{
+    public editarEtiqueta(lista: ListaTarea, tarea: Tarea, nuevaEtiqueta:string):void{
         let nodoAux: NodoTarea;
         nodoAux = lista.search(tarea);
 
         if(nodoAux != null){
             nodoAux.value.setEtiqueta(nuevaEtiqueta);
+        }
+    }
+
+    public editarAvance(lista: ListaTarea, tarea: Tarea, nuevoAvance: number):void{
+        let nodoAux: NodoTarea;
+        nodoAux = lista.search(tarea);
+
+        if(nodoAux != null){
+            nodoAux.value.setAvance(nuevoAvance);
         }
     }
 }

@@ -3,12 +3,17 @@ import NodoTarea from "./NodoTarea";
 
 export default class ListaTarea {
     private head: NodoTarea;
+    
     constructor() {
         this.head = undefined as unknown as NodoTarea;
     }
 
     public getHead(): NodoTarea {
         return this.head;
+    }
+
+    public setHead(value: NodoTarea){
+        this.head = value
     }
     
     public push(value: Tarea): NodoTarea {
@@ -47,8 +52,9 @@ export default class ListaTarea {
         }
         value = headAux.value;
         return value;
-    }
+    }//pop borra el ultimo nodo
 
+ 
     public insertFirst(value: Tarea): NodoTarea {
         const node = new NodoTarea(value);
         node.next = this.head;
@@ -110,7 +116,7 @@ export default class ListaTarea {
             previous.next = headAux.next;
         }
         return headAux.value;
-    }
+    }//delete borra un nodo particular
    
     public search(value: Tarea): NodoTarea {
         let headAux = this.head;
@@ -147,5 +153,6 @@ export default class ListaTarea {
             console.log(actual.value);
             actual = actual.next;
         }
-    }
+    }  
+    
 }
