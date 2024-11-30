@@ -1,0 +1,200 @@
+@startuml DiagramaClases
+
+title TODO-LIST v.5 👻
+
+class Aplicacion{
+    - listaDeTareas: ListaTarea;
+    - listaDeTareasCompletadas: ListaTarea;
+
+    - creador: CrearTarea;
+    - editor: EditarTarea;
+
+    * contextoBusqueda: BuscadorDeTarea;
+    * actionBusqueda: string;
+    * contextoOrdenamiento: OrdenarTareas;
+
+    
+    + creardorT(titulo:string, descripcion:string, fecha:number, prioridad:Prioridad, categoria:string, etiqueta:string):Tarea
+    + agregarNuevaTarea(nuevaTarea:Tarea)
+    + editarTarea(accion: string, lista: ListaTarea, tarea: Tarea, valor: any): void
+    + eliminarUnaTarea(tarea: Tarea):Tarea
+    + getListaDeTareasIncompletas():ListaDeTarea
+    + getListaDeTareasCompletas():ListaDeTarea
+    + cargarTareasCompletas():void
+    - decidirTipoBusqueda(actionBusqueda: string)
+    + setActionBusqueda()
+    + buscadorFunc(lista: ListaTarea, valor: any):void
+    - decidirTipoOrdenamiento(actionOrdenar: string);
+    + ordenarFunc();
+}
+
+class Tarea{
+    - titulo:string;
+    - descripcion:string;
+    - fechaVec:number;
+    - prioridad:Prioridad;
+    - categoria:string;
+    - etiqueta:string;
+    - avance:number;
+
+    + getTitulo(): string
+    + setTitulo(valor:string)
+    + getDescripcion():string
+    + setDescripcion(valor: string)
+    + getFechaVec():number
+    + setFechaVec(valor: number)
+    + getPrioridad():Prioridad
+    + setPrioridad(valor: Prioridad)
+    + getCategoria():string
+    + setCategoria(valor: string)
+    + getEtiqueta():string
+    + setEtiqueta(valor: string)
+    + getAvance():number
+    + setAvance(valor: number)
+}
+
+class NodoTarea{
+    - _value: Tarea;
+    - _next: NodoTarea;
+
+    + gets&sets()
+}
+
+class ListaTarea{
+    - head: NodoTarea;
+    + getHead()
+    + setHead(value: NodoTarea)
+    + push(value: Tarea): NodoTarea
+    + pop(): Tarea
+    + removeFirst(): Tarea
+    + insertOrderedFecha(value: Tarea): NodoTarea
+    + delete(value: Tarea): Tarea
+    + search(value: Tarea): NodoTarea
+    + clear(): void
+    + imprimirTodo(): void
+}
+
+class CrearTarea{
+    + crearNuevaTarea(titulo:string, descripcion:string, fecha:number, prioridad:Prioridad, categoria:string, etiqueta:string):Tarea
+}
+
+class EditarTarea{
+    + editarTitulo(lista: ListaTarea, tarea: Tarea, nuevoTitulo: string):void
+    + editarDescripcion(lista: ListaTarea, tarea: Tarea, nuevaDescripcion: string): void
+    + editarFechaVec(lista: ListaTarea, tarea: Tarea, nuevoVec: number):void
+    + editarPrioridad(lista: ListaTarea, tarea: Tarea, nuevaPrioridad: Prioridad):void
+    + editarCategoria(lista: ListaTarea, tarea: Tarea, nuevaCategoria: string):void
+    + editarEtiqueta(lista: ListaTarea, tarea: Tarea, nuevaEtiqueta:string):void
+    + editarAvance(lista: ListaTarea, tarea: Tarea, nuevoAvance: number):void
+}
+
+interface BusquedaEstrategia{
+    + buscar(lista:ListaTarea, valor:objetoBusqueda):Tarea
+}
+
+interface objetoBusqueda {
+    titulo?:string;
+    fecha?:number;
+}
+
+class CriterioBusqueda{
+    - _titulo?: string;
+    - _fecha?: number;
+
+    + gets&sets()
+    + toObjetoBusqueda(): objetoBusqueda
+}
+
+class BuscadorDeTarea {
+    + setEstrategia(estrategia:BusquedaEstrategia):void
+    - estrategia:BusquedaEstrategia
+    + buscar(lista:ListaTarea, valor:objetoBusqueda):Tarea
+}
+package EstrategiasDeBusqueda {
+
+    class BusquedaPorTitulo {
+        + buscar(lista:ListaTarea, valor:objetoBusqueda):Tarea
+    }
+
+    class BusquedaPorFecha {
+        + buscar(lista:ListaTarea, valor:objetoBusqueda):Tarea
+    }
+}
+
+interface OrdenamientoEstrategia{
+    + ordenar(lista:ListaTarea):void
+}
+
+class OrdenamientoTarea{
+    - estrategia:OrdenamientoEstrategia
+    + setEstrategia(estrategia:OrdenamientoEstrategia):void
+    + ordenar(lista:ListaTarea):void
+}
+
+package EstrategiasDeOrdenamiento{
+    
+    class OrdenarPorTitulo{
+        + ordenar(lista: ListaTarea): void
+    }
+
+    class OrdenarPorFecha{
+        + ordenar(lista: ListaTarea): void
+    }
+
+    class OrdenarPorPrioridad{
+        + ordenar(lista: ListaTarea): void
+    }
+}
+
+/' archicvos json
+package archivosJSON{
+    class CargarArchivoJSON{
+        + cargarListaIncompleta(tarea: Tarea)
+        + cargarListaCompleta(tarea: Tarea)
+    }
+
+    interface iLeerJSON{
+        listaTareasIncompleta(): Promise<ListaTarea>;
+        listaTareasCompleta(): Promise<ListaTarea>;
+    }
+    
+    class LeerArchivoJSON implements iLeerJSON{
+        + async listaTareasIncompleta(): Promise<ListaTarea>;
+        + async listaTareasCompleta(): Promise<ListaTarea>;
+    }
+}
+'/
+
+enum Prioridad{
+    ALTA,
+    MEDIA,
+    BAJA
+}
+
+'relaciones
+Aplicacion *-- ListaTarea
+Aplicacion -l-> BuscadorDeTarea
+Aplicacion -l-> CriterioBusqueda
+Aplicacion -r-> OrdenamientoTarea
+Aplicacion -u- EditarTarea
+Aplicacion -u-> CrearTarea
+
+Aplicacion ..> EstrategiasDeBusqueda
+Aplicacion ..> EstrategiasDeOrdenamiento
+
+ListaTarea *-- NodoTarea
+NodoTarea *-- Tarea
+
+BusquedaEstrategia <-* BuscadorDeTarea
+BusquedaEstrategia <.. BusquedaPorTitulo
+BusquedaEstrategia <.. BusquedaPorFecha
+
+objetoBusqueda ..> BusquedaEstrategia
+CriterioBusqueda -l-> objetoBusqueda
+
+OrdenamientoTarea *-> OrdenamientoEstrategia
+OrdenamientoEstrategia <.. OrdenarPorTitulo
+OrdenamientoEstrategia <.. OrdenarPorFecha
+OrdenamientoEstrategia <.. OrdenarPorPrioridad
+
+@enduml
