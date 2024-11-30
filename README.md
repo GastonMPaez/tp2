@@ -23,5 +23,5 @@ Las funcionalidades principales incluyen:
 * Eliminar Tareas: Los usuarios pueden eliminar tareas completadas o que ya no son necesarias.
 
 <p align="center">
-    <img src="logo\capi2-la venganza de capi-.png" alt="Descripción de la imagen" width="400" height="200">
+    <img src="logo\capi2.png" alt="Descripción de la imagen" width="400" height="200">
 </p>
