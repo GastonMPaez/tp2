@@ -1,78 +1,146 @@
 import { Prioridad } from "../Enum/Prioridad";
 
-export default class Tarea{
+/**
+ * Clase `Tarea` que representa una tarea con varios atributos como título, descripción, fecha de vencimiento, prioridad, categoría, etiqueta y avance.
+ */
+export default class Tarea {
 
-    private titulo:string;
-    private descripcion:string;
-    private fechaVec:number;
-    private prioridad:Prioridad;
-    private categoria:string;
-    private etiqueta:string;
-    private avance:number;
+    private titulo: string;
+    private descripcion: string;
+    private fechaVec: number;
+    private prioridad: Prioridad;
+    private categoria: string;
+    private etiqueta: string;
+    private avance: number;
     
-    constructor(titulo:string, desc:string, fechaVec:number, prioridad:Prioridad, cat:string, etiqueta:string){
-        this.titulo=titulo;
-        this.descripcion=desc;
-        this.fechaVec=fechaVec;
+    /**
+     * Crea una nueva instancia de `Tarea`.
+     * @param {string} titulo - El título de la tarea.
+     * @param {string} desc - La descripción de la tarea.
+     * @param {number} fechaVec - La fecha de vencimiento de la tarea.
+     * @param {Prioridad} prioridad - La prioridad de la tarea.
+     * @param {string} cat - La categoría de la tarea.
+     * @param {string} etiqueta - La etiqueta de la tarea.
+     */
+    constructor(titulo: string, desc: string, fechaVec: number, prioridad: Prioridad, cat: string, etiqueta: string) {
+        this.titulo = titulo;
+        this.descripcion = desc;
+        this.fechaVec = fechaVec;
         this.prioridad = prioridad;
         this.categoria = cat;
         this.etiqueta = etiqueta;
         this.avance = 0;
     }
 
+    /**
+     * Obtiene el título de la tarea.
+     * @returns {string} El título de la tarea.
+     */
     public getTitulo(): string{
         return this.titulo;
     }
 
-    public setTitulo(valor:string){
-        this.titulo=valor;
+    /**
+     * Establece el título de la tarea.
+     * @param {string} valor - El nuevo título de la tarea.
+     */
+    public setTitulo(valor: string) {
+        this.titulo = valor;
     }
     
-    public getDescripcion():string {
+    /**
+     * Obtiene la descripción de la tarea.
+     * @returns {string} La descripción de la tarea.
+     */
+    public getDescripcion(): string {
         return this.descripcion;
     }
 
-    public setDescripcion(valor: string){
+    /**
+     * Establece la descripción de la tarea.
+     * @param {string} valor - La nueva descripción de la tarea.
+     */
+    public setDescripcion(valor: string) {
         this.descripcion = valor;
     }
 
-    public getFechaVec():number {
+    /**
+     * Obtiene la fecha de vencimiento de la tarea.
+     * @returns {number} La fecha de vencimiento de la tarea.
+     */
+    public getFechaVec(): number {
         return this.fechaVec;
     }
 
-    public setFechaVec(valor: number){
+    /**
+     * Establece la fecha de vencimiento de la tarea.
+     * @param {number} valor - La nueva fecha de vencimiento de la tarea.
+     */
+    public setFechaVec(valor: number) {
         this.fechaVec = valor;
     }
 
-    public getPrioridad():Prioridad {
+    /**
+     * Obtiene la prioridad de la tarea.
+     * @returns {Prioridad} La prioridad de la tarea.
+     */
+    public getPrioridad(): Prioridad {
         return this.prioridad;
     }
 
-    public setPrioridad(valor: Prioridad){
+    /**
+     * Establece la prioridad de la tarea.
+     * @param {Prioridad} valor - La nueva prioridad de la tarea.
+     */
+    public setPrioridad(valor: Prioridad) {
         this.prioridad = valor;
     }
 
-    public getCategoria():string {
+    /**
+     * Obtiene la categoría de la tarea.
+     * @returns {string} La categoría de la tarea.
+     */
+    public getCategoria(): string {
         return this.categoria;
     }
 
-    public setCategoria(valor: string){
+    /**
+     * Establece la categoría de la tarea.
+     * @param {string} valor - La nueva categoría de la tarea.
+     */
+    public setCategoria(valor: string) {
         this.categoria = valor;
     }
 
-    public getEtiqueta():string {
+    /**
+     * Obtiene la etiqueta de la tarea.
+     * @returns {string} La etiqueta de la tarea.
+     */
+    public getEtiqueta(): string {
         return this.etiqueta;
     }
 
-    public setEtiqueta(valor: string){
+    /**
+     * Establece la etiqueta de la tarea.
+     * @param {string} valor - La nueva etiqueta de la tarea.
+     */
+    public setEtiqueta(valor: string) {
         this.etiqueta = valor;
     }
 
-    public getAvance():number {
+    /**
+     * Obtiene el avance de la tarea.
+     * @returns {number} El avance de la tarea.
+     */
+    public getAvance(): number {
         return this.avance;
     }
 
-    public setAvance(valor: number){
+    /**
+     * Establece el avance de la tarea.
+     * @param {number} valor - El nuevo avance de la tarea.
+     */
+    public setAvance(valor: number) {
         this.avance = valor;
     }
 

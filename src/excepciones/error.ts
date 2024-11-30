@@ -1,8 +1,14 @@
+/**
+ * Clase `ValorNoEncontrado` que representa un error cuando un valor no es encontrado.
+ * @extends {Error}
+ */
 export default class ValorNoEncontrado extends Error {
-    constructor(message: string) {
-      super(message);
-    }
+   
+  /**
+   * Crea una nueva instancia de `ValorNoEncontrado`.
+   * @param {string} message - El mensaje de error.
+   */
+  constructor(message: string) {
+    super(message);
+  }
 }
-/*
-nombre generico preguntar si hay que incluir mas
-*/

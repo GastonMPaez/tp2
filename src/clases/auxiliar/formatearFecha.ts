@@ -1,8 +1,18 @@
 import moment from "moment";
 import ValorNoEncontrado from "../../excepciones/error";
 
-export default class ConvertirFecha{
-    public convertirFecha(fechaNumerica: number){
+/**
+ * Clase `ConvertirFecha` que se encarga de convertir una fecha numérica en un objeto de fecha.
+ */
+export default class ConvertirFecha {
+
+    /**
+     * Convierte una fecha numérica en un objeto de fecha.
+     * @param {number} fechaNumerica - La fecha en formato numérico (YYYYMMDD).
+     * @returns {moment.Moment} - El objeto de fecha convertido.
+     * @throws {ValorNoEncontrado} - Si la fecha es incorrecta.
+     */
+    public convertirFecha(fechaNumerica: number): moment.Moment {
         const fechaMoment = moment(fechaNumerica.toString(), "YYYYMMDD");
         if (fechaMoment.isValid()) {
             return fechaMoment;
@@ -11,14 +21,3 @@ export default class ConvertirFecha{
         }
     }
 }
-//console.log(fechaMoment.format('DD/MM/YYYY'))
-/*
-necesito que imprima la fecha de las tareas con ese formato
-
-convertirFecha cuando sea llamada obtiene el valor de tara.FechaVec
-
-convertirFecha(tarea.getFechaVec());
-
-fecha = 20240204
-
-*/
